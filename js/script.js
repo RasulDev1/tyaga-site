@@ -1,6 +1,6 @@
 // ===== НАСТРОЙКИ =====
-// Почта, на которую приходят заявки (через бесплатный сервис FormSubmit.co)
-var FORM_EMAIL = 'yohantonio18@gmail.com';
+// Адрес веб-приложения Google Apps Script, которое записывает заявки в Google Таблицу
+var SHEET_URL = '';
 var PHONE_DISPLAY = '+7 (989) 932-87-75';
 var PHONE_LINK = 'tel:+79899328775';
 
@@ -176,6 +176,8 @@ var TOOLS = [
     var name = $('name').value.trim(), phone = $('phone').value.trim(), address = $('address').value.trim();
     if ($('honey').value) { return; } // защита от спам-ботов
 
+    if (!SHEET_URL) { showMsg('Приём заявок ещё не настроен. Пожалуйста, позвоните нам: <a href="' + PHONE_LINK + '">' + PHONE_DISPLAY + '</a>', false); return; }
+
     var btn = $('bookBtn');
     btn.disabled = true; btn.textContent = 'Отправляем…'; clearMsg();
 
@@ -191,10 +193,7 @@ var TOOLS = [
       'Адрес доставки': address,
       'Имя': name,
       'Телефон': phone,
-      'Согласие на обработку ПДн': 'Дано ' + new Date().toLocaleString('ru-RU') + ' (редакция согласия и политики от 25.09.2026), страница: ' + location.href,
-      _subject: 'Новая заявка на прокат: ' + c.name + ' (' + ru(k.start) + ' — ' + ru(k.end) + ')',
-      _template: 'table',
-      _captcha: 'false'
+      'Согласие на обработку ПДн': 'Дано ' + new Date().toLocaleString('ru-RU') + ' (редакция согласия и политики от 25.09.2026), страница: ' + location.href
     };
 
     // На локальном компьютере (Live Server) показываем техническую причину ошибки
@@ -202,9 +201,10 @@ var TOOLS = [
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
 
-    fetch('https://formsubmit.co/ajax/' + FORM_EMAIL, {
+    // text/plain — чтобы браузер не делал предварительный CORS-запрос, который Apps Script не поддерживает
+    fetch(SHEET_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload),
       signal: ctrl ? ctrl.signal : undefined
     })
@@ -215,17 +215,12 @@ var TOOLS = [
       });
     })
     .then(function (data) {
-      console.log('[ТЯГА] Ответ FormSubmit:', data);
+      console.log('[ТЯГА] Ответ таблицы:', data);
       if (data && (data.success === true || data.success === 'true')) {
         showMsg('Заявка принята: ' + esc(c.name) + ', ' + ru(k.start) + ' — ' + ru(k.end) + '. Перезвоним для подтверждения.', true);
         $('name').value = ''; $('phone').value = ''; $('address').value = ''; $('agree').checked = false; touched = {};
       } else {
-        var m = (data && data.message) || 'неизвестная ошибка';
-        if (/activat/i.test(m)) {
-          showMsg('Форма ещё не активирована. На ' + esc(FORM_EMAIL) + ' пришло письмо от FormSubmit — нажмите в нём «Activate Form» (проверьте «Спам»), затем отправьте заявку ещё раз.', false);
-        } else {
-          throw new Error(m);
-        }
+        throw new Error((data && data.message) || 'неизвестная ошибка');
       }
     })
     .catch(function (err) {
