@@ -1,6 +1,6 @@
 // ===== НАСТРОЙКИ =====
-// Адрес веб-приложения Google Apps Script, которое записывает заявки в Google Таблицу
-var SHEET_URL = 'https://script.google.com/macros/s/AKfycbyyiqiJrpBORcX8KbGMx6igzL4FkfXdJPdRlreAVWv1ffUchvzX7eMNehRdKhkHa8Ng/exec';
+// Адрес веб-приложения Google Apps Script, которое присылает заявки на почту
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwX9mU2-DTutYcObEBymqs_kydthmDVBgkD-o6AJRiYv_x23DjInf57RkGnXEQ9tLE8/exec';
 var PHONE_DISPLAY = '+7 (989) 932-87-75';
 var PHONE_LINK = 'tel:+79899328775';
 
