@@ -66,6 +66,7 @@ h2{margin:0;font-weight:800;font-size:40px;letter-spacing:-.5px}
 .card-prices .d{font-weight:700;font-size:17px;text-align:right}
 .card button{height:48px;border-radius:8px;border:2px solid #141414;background:#fff;color:#141414;font-weight:800;font-size:16px}
 .card.sel button{background:#141414;color:#FFD400}
+.grid-note{grid-column:1/-1;margin:0;padding:40px 0;text-align:center;color:#5C5950;font-size:16px}
 
 .how{background:#fff}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}

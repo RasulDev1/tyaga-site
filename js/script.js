@@ -1,23 +1,10 @@
 // ===== НАСТРОЙКИ =====
-// Адрес веб-приложения Google Apps Script, которое присылает заявки на почту
-var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwX9mU2-DTutYcObEBymqs_kydthmDVBgkD-o6AJRiYv_x23DjInf57RkGnXEQ9tLE8/exec';
+// Адрес скрипта (SHEET_URL) и каталог по умолчанию — в js/catalog.js. Товары правятся в admin.html.
 var PHONE_DISPLAY = '+7 (989) 932-87-75';
 var PHONE_LINK = 'tel:+79899328775';
 
 // Доставка: null — «рассчитаем при звонке», 0 — «бесплатно», число — фиксированная цена в рублях
 var DELIVERY_PRICE = null;
-
-// Каталог: чтобы изменить цену или залог — поменяйте числа здесь
-var TOOLS = [
-  { id:'drill',   name:'Перфоратор SDS-Plus',        spec:'800 Вт, 3 режима, бурение до 26 мм',          price:500,  deposit:5000,  img:'images/perforator.webp',     pos:'48% 45%' },
-  { id:'screw',   name:'Шуруповёрт аккумуляторный',  spec:'18 В, 2 аккумулятора, зарядное устройство',   price:400,  deposit:3000,  img:'images/shurupovert.webp',    pos:'50% 40%' },
-  { id:'grinder', name:'УШМ (болгарка) 230 мм',      spec:'2200 Вт, плавный пуск, защитный кожух',       price:450,  deposit:4000,  img:'images/bolgarka.webp',       pos:'40% 60%' },
-  { id:'saw',     name:'Циркулярная пила',           spec:'1400 Вт, глубина пропила до 65 мм',           price:600,  deposit:6000,  img:'images/pila.webp',           pos:'50% 48%' },
-  { id:'level',   name:'Лазерный нивелир',           spec:'3 плоскости по 360°, штатив в комплекте',     price:700,  deposit:10000, img:'images/nivelir.webp',        pos:'60% 68%' },
-  { id:'breaker', name:'Отбойный молоток',           spec:'1600 Вт, SDS-Max, энергия удара 25 Дж',       price:1200, deposit:15000, img:'images/otboynik.webp',       pos:'50% 30%' },
-  { id:'mixer',   name:'Бетономешалка 180 л',        spec:'800 Вт, 220 В, на колёсах',                   price:900,  deposit:8000,  img:'images/betonomeshalka.webp', pos:'45% 45%' },
-  { id:'vacuum',  name:'Строительный пылесос',       spec:'30 л, класс пыли L, розетка для инструмента', price:500,  deposit:5000,  img:'images/pylesos.webp',        pos:'65% 55%' }
-];
 // =====================
 
 (function () {
@@ -38,19 +25,29 @@ var TOOLS = [
   function deliveryText() { return DELIVERY_PRICE === null ? 'при звонке' : (DELIVERY_PRICE === 0 ? 'бесплатно' : rub(DELIVERY_PRICE)); }
   function deliverySum() { return typeof DELIVERY_PRICE === 'number' ? DELIVERY_PRICE : 0; }
 
-  $('tool').innerHTML += TOOLS.map(function (t) {
-    return '<option value="' + t.id + '">' + esc(t.name) + ' — ' + rub(t.price) + '/сутки</option>';
-  }).join('');
+  // Каталог: сразу показываем последнюю загруженную копию (или встроенный список), затем обновляем из админ-панели
+  var CACHE_KEY = 'tyaga_catalog';
+  var TOOLS = null;
+  try { TOOLS = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) {}
+  var fromCache = Array.isArray(TOOLS);
+  if (!fromCache) TOOLS = DEFAULT_TOOLS;
+
+  function renderOptions() {
+    $('tool').innerHTML = '<option value="">— Выберите инструмент —</option>' + TOOLS.map(function (t) {
+      return '<option value="' + esc(t.id) + '">' + esc(t.name) + ' — ' + rub(t.price) + '/сутки</option>';
+    }).join('');
+    $('tool').value = picked;
+  }
   function pick(id) { picked = id; $('tool').value = id; renderGrid(); render(); }
 
   function renderGrid() {
     $('grid').innerHTML = TOOLS.map(function (t) {
       var sel = t.id === picked;
       return '<div class="card' + (sel ? ' sel' : '') + '">' +
-        '<div class="card-img"><img loading="lazy" src="' + t.img + '" alt="' + esc(t.name) + '" style="object-position:' + t.pos + '"><span class="card-tag">ВЫБРАНО</span></div>' +
+        '<div class="card-img"><img loading="lazy" src="' + esc(t.img) + '" alt="' + esc(t.name) + '" style="object-position:' + esc(t.pos || '50% 50%') + '"><span class="card-tag">ВЫБРАНО</span></div>' +
         '<div class="card-body"><div class="card-info"><div class="card-name">' + esc(t.name) + '</div><div class="card-spec">' + esc(t.spec) + '</div></div>' +
         '<div class="card-prices"><div><small>Сутки</small><span class="p">' + rub(t.price) + '</span></div><div class="d"><small>Залог</small>' + rub(t.deposit) + '</div></div>' +
-        '<button type="button" data-id="' + t.id + '">' + (sel ? 'Выбрано' : 'Выбрать') + '</button></div></div>';
+        '<button type="button" data-id="' + esc(t.id) + '">' + (sel ? 'Выбрано' : 'Выбрать') + '</button></div></div>';
     }).join('');
   }
 
@@ -64,7 +61,7 @@ var TOOLS = [
 
   function render() {
     var c = cur(), k = calc();
-    if (c) { $('selImg').src = c.img; $('selImg').alt = c.name; $('selImg').style.objectPosition = c.pos; }
+    if (c) { $('selImg').src = c.img; $('selImg').alt = c.name; $('selImg').style.objectPosition = c.pos || '50% 50%'; }
     $('selImg').hidden = !c; $('selPh').style.display = c ? 'none' : '';
     $('days').textContent = k.valid ? k.days + ' ' + word(k.days) : '—';
     $('price').textContent = c ? rub(c.price) : '—';
@@ -242,5 +239,20 @@ var TOOLS = [
     io.observe($('booking')); io.observe($('contacts'));
   }
 
-  renderGrid(); render();
+  function showCatalog(list) {
+    TOOLS = list;
+    if (!cur()) picked = '';
+    renderOptions(); renderGrid(); render();
+  }
+  if (fromCache) showCatalog(TOOLS);
+  else $('grid').innerHTML = '<p class="grid-note">Загружаем каталог…</p>';
+  render();
+  loadCatalog(function (list) {
+    if (list) {
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify(list)); } catch (e) {}
+      showCatalog(list);
+    } else if (!fromCache) {
+      showCatalog(DEFAULT_TOOLS);
+    }
+  }, 6000);
 })();

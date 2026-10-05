@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Админ-панель — ТЯГА</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+body{margin:0;background:#F3F2EE;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#141414}
+button,input,textarea{font-family:inherit;font-size:15px}
+button{cursor:pointer}
+header{background:#141414;border-bottom:4px solid #FFD400;position:sticky;top:0;z-index:10}
+header .in{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{color:#fff;font-weight:800;font-size:22px;text-decoration:none}
+.logo span{color:#FFD400;font-size:14px;font-weight:700;margin-left:8px}
+.sp{flex-grow:1}
+.status{color:#BDB9AE;font-size:14px}
+.status.dirty{color:#FFD400}
+.status.bad{color:#FF8A80}
+.btn{height:44px;padding:0 18px;border-radius:8px;border:2px solid #141414;background:#fff;color:#141414;font-weight:800}
+.btn-y{background:#FFD400;border-color:#FFD400}
+.btn-y:disabled{opacity:.45;cursor:default}
+.btn-g{background:transparent;border-color:#4A4A4A;color:#fff}
+a.btn-g{display:inline-flex;align-items:center;text-decoration:none}
+main{max-width:1280px;margin:0 auto;padding:28px 24px 64px}
+.hint{color:#5C5950;font-size:14px;margin:0 0 20px}
+
+.login{max-width:380px;margin:12vh auto;background:#fff;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:14px}
+.login h1{margin:0;font-size:24px}
+.login input{height:48px;border:2px solid #E2E0D8;border-radius:8px;padding:0 14px;font-size:16px}
+.login input:focus{outline:none;border-color:#141414}
+.err{color:#C62828;font-size:14px;min-height:18px}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:#fff;border:2px solid #E2E0D8;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;cursor:grab}
+.card.ghost{opacity:.35;border-style:dashed}
+.card.float{position:fixed;z-index:50;pointer-events:none;cursor:grabbing;box-shadow:0 14px 34px rgba(0,0,0,.22);border-color:#FFD400;transform:rotate(1.5deg)}
+.card-img{touch-action:none}
+.card-img{background:#ECEAE4;height:170px;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.grip{position:absolute;top:10px;left:10px;background:#141414;color:#FFD400;font-size:12px;font-weight:800;padding:6px 9px;border-radius:6px;pointer-events:none}
+.photo-btn{position:absolute;right:10px;bottom:10px;background:#fff;border:0;border-radius:6px;padding:7px 10px;font-weight:700;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.busy{position:absolute;inset:0;background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.card-body{padding:16px;display:flex;flex-direction:column;gap:10px;flex-grow:1;cursor:default}
+.card label{font-size:12px;color:#5C5950;font-weight:700;display:flex;flex-direction:column;gap:4px}
+.card input,.card textarea{border:2px solid #E2E0D8;border-radius:8px;padding:8px 10px;width:100%;color:#141414;background:#fff}
+.card input:focus,.card textarea:focus{outline:none;border-color:#141414}
+.card input.name{font-weight:800;font-size:16px}
+.card textarea{resize:vertical;min-height:62px;line-height:1.4}
+.card input.bad{border-color:#C62828}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.del{margin-top:auto;height:40px;border-radius:8px;border:2px solid #E2E0D8;background:#fff;color:#C62828;font-weight:700}
+.del:hover{border-color:#C62828}
+.add{border:2px dashed #BDB9AE;border-radius:14px;background:transparent;min-height:300px;font-weight:800;font-size:17px;color:#5C5950}
+.add:hover{border-color:#141414;color:#141414}
+
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:820px){.grid{grid-template-columns:1fr 1fr;gap:14px}}
+@media (max-width:560px){
+  .grid{grid-template-columns:1fr}
+  header .in,main{padding-left:16px;padding-right:16px}
+  .status{order:5;width:100%}
+}
+</style>
+</head>
+<body>
+
+<header><div class="in">
+  <a class="logo" href="index.html">ТЯГА<span>админ-панель</span></a>
+  <span class="sp"></span>
+  <span class="status" id="status"></span>
+  <span id="tools" hidden>
+    <a class="btn btn-g" href="index.html#catalog" target="_blank">Открыть сайт</a>
+    <button class="btn btn-g" id="logout" type="button">Выйти</button>
+    <button class="btn btn-y" id="save" type="button" disabled>Сохранить</button>
+  </span>
+</div></header>
+
+<form class="login" id="login">
+  <h1>Вход</h1>
+  <input type="password" id="pw" placeholder="Пароль" autocomplete="current-password" required autofocus>
+  <div class="err" id="loginErr"></div>
+  <button class="btn btn-y" id="loginBtn" type="submit">Войти</button>
+</form>
+
+<main id="editor" hidden>
+  <p class="hint">Перетаскивайте карточки мышкой, чтобы поменять порядок. Чтобы сменить фото, нажмите «Сменить фото». Изменения появятся на сайте после кнопки «Сохранить».</p>
+  <div class="grid" id="grid"></div>
+  <input type="file" id="file" accept="image/*" hidden>
+</main>
+
+<script src="js/catalog.js?v=1"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var PW_KEY = 'tyaga_admin_pw';
+  var password = '', items = [], dirty = false, uploading = 0, saving = false, photoFor = null;
+
+  function api(body) {
+    return fetch(SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // без предварительного CORS-запроса
+      body: JSON.stringify(body)
+    }).then(function (r) { return r.text(); }).then(function (t) {
+      try { return JSON.parse(t); } catch (e) { throw new Error('Скрипт ответил не так, как ожидалось. Проверьте, что развернута новая версия.'); }
+    });
+  }
+  function status(text, cls) { $('status').textContent = text; $('status').className = 'status' + (cls ? ' ' + cls : ''); }
+  function refreshSave() {
+    $('save').disabled = !dirty || uploading > 0 || saving;
+    if (uploading) status('Загружаем фото…');
+    else if (saving) status('Сохраняем…');
+    else if (dirty) status('Есть несохранённые изменения', 'dirty');
+  }
+  function touch() { dirty = true; refreshSave(); }
+
+  // ===== Вход =====
+  function login(pw, silent) {
+    $('loginBtn').disabled = true; $('loginErr').textContent = silent ? '' : 'Проверяем…';
+    api({ action: 'login', password: pw }).then(function (d) {
+      if (!d.success) throw new Error(d.message || 'Ошибка входа');
+      password = pw;
+      try { sessionStorage.setItem(PW_KEY, pw); } catch (e) {}
+      items = (d.products || DEFAULT_TOOLS).map(function (t) { var c = {}; for (var k in t) c[k] = t[k]; return c; });
+      $('login').hidden = true; $('editor').hidden = false; $('tools').hidden = false;
+      status(d.products ? 'Каталог загружен' : 'Сохранённого каталога пока нет — показан текущий с сайта');
+      render();
+    }).catch(function (err) {
+      try { sessionStorage.removeItem(PW_KEY); } catch (e) {}
+      $('loginErr').textContent = err.message || String(err);
+    }).then(function () { $('loginBtn').disabled = false; });
+  }
+  $('login').addEventListener('submit', function (e) { e.preventDefault(); login($('pw').value); });
+  $('logout').addEventListener('click', function () {
+    if (dirty && !confirm('Есть несохранённые изменения. Всё равно выйти?')) return;
+    try { sessionStorage.removeItem(PW_KEY); } catch (e) {}
+    dirty = false; location.reload();
+  });
+  var saved = null;
+  try { saved = sessionStorage.getItem(PW_KEY); } catch (e) {}
+  if (saved) login(saved, true);
+
+  // ===== Карточки =====
+  function find(id) { return items.filter(function (t) { return t.id === id; })[0]; }
+  function cardHtml(t) {
+    return '<div class="card" data-id="' + esc(t.id) + '">' +
+      '<div class="card-img">' + (t.img ? '<img src="' + esc(t.img) + '" alt="" style="object-position:' + esc(t.pos || '50% 50%') + '">' : '') +
+        '<span class="grip">⠿ ПЕРЕТАЩИТЬ</span>' +
+        '<button type="button" class="photo-btn" data-act="photo">' + (t.img ? 'Сменить фото' : 'Добавить фото') + '</button>' +
+        (t._busy ? '<div class="busy">Загружаем фото…</div>' : '') + '</div>' +
+      '<div class="card-body">' +
+        '<label>Название<input class="name" data-f="name" value="' + esc(t.name) + '" maxlength="120"></label>' +
+        '<label>Описание<textarea data-f="spec" maxlength="400">' + esc(t.spec) + '</textarea></label>' +
+        '<div class="row">' +
+          '<label>Цена за сутки, ₽<input type="number" min="0" step="10" inputmode="numeric" data-f="price" value="' + esc(t.price) + '"></label>' +
+          '<label>Залог, ₽<input type="number" min="0" step="100" inputmode="numeric" data-f="deposit" value="' + esc(t.deposit) + '"></label>' +
+        '</div>' +
+        '<button type="button" class="del" data-act="del">Удалить</button>' +
+      '</div></div>';
+  }
+  function render() {
+    $('grid').innerHTML = items.map(cardHtml).join('') + '<button type="button" class="add" id="add">+ Добавить инструмент</button>';
+  }
+
+  $('grid').addEventListener('input', function (e) {
+    var f = e.target.getAttribute('data-f'); if (!f) return;
+    var t = find(e.target.closest('.card').getAttribute('data-id'));
+    t[f] = (f === 'price' || f === 'deposit') ? Number(e.target.value) || 0 : e.target.value;
+    e.target.classList.remove('bad');
+    touch();
+  });
+  $('grid').addEventListener('click', function (e) {
+    if (e.target.id === 'add') {
+      items.push({ id: 't' + Date.now().toString(36), name: '', spec: '', price: 0, deposit: 0, img: '', pos: '50% 50%' });
+      render(); touch();
+      var cards = $('grid').querySelectorAll('.card');
+      cards[cards.length - 1].querySelector('.name').focus();
+      return;
+    }
+    var act = e.target.getAttribute('data-act'); if (!act) return;
+    var id = e.target.closest('.card').getAttribute('data-id'), t = find(id);
+    if (act === 'del') {
+      if (!confirm('Удалить «' + (t.name || 'без названия') + '»?')) return;
+      items = items.filter(function (x) { return x !== t; });
+      render(); touch();
+    } else if (act === 'photo') {
+      photoFor = t; $('file').value = ''; $('file').click();
+    }
+  });
+
+  // Перетаскивание мышью (на телефоне — за фото). Карточка остаётся на месте полупрозрачной, за курсором едет её копия.
+  var drag = null;
+  $('grid').addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.target.closest('input,textarea,button')) return;
+    var card = e.target.closest('.card'); if (!card) return;
+    if (e.pointerType !== 'mouse' && !e.target.closest('.card-img')) return;
+    e.preventDefault();
+    drag = { card: card, x: e.clientX, y: e.clientY, started: false };
+  });
+  document.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    if (!drag.started) {
+      if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) < 6) return;
+      var r = drag.card.getBoundingClientRect();
+      drag.dx = drag.x - r.left; drag.dy = drag.y - r.top;
+      drag.clone = drag.card.cloneNode(true);
+      drag.clone.className = 'card float';
+      drag.clone.style.width = r.width + 'px'; drag.clone.style.height = r.height + 'px';
+      document.body.appendChild(drag.clone);
+      drag.card.classList.add('ghost');
+      drag.started = true;
+    }
+    drag.clone.style.left = (e.clientX - drag.dx) + 'px';
+    drag.clone.style.top = (e.clientY - drag.dy) + 'px';
+    var over = document.elementFromPoint(e.clientX, e.clientY);
+    var target = over && over.closest && over.closest('#grid .card');
+    if (target && target !== drag.card) {
+      var cards = [].slice.call($('grid').querySelectorAll('.card'));
+      var after = cards.indexOf(drag.card) < cards.indexOf(target);
+      $('grid').insertBefore(drag.card, after ? target.nextSibling : target);
+    }
+    // автопрокрутка у краёв окна
+    if (e.clientY < 80) window.scrollBy(0, -12); else if (e.clientY > innerHeight - 60) window.scrollBy(0, 12);
+  });
+  function endDrag() {
+    if (!drag) return;
+    var d = drag; drag = null;
+    if (!d.started) return;
+    d.clone.remove(); d.card.classList.remove('ghost');
+    var order = [].map.call($('grid').querySelectorAll('.card'), function (c) { return c.getAttribute('data-id'); });
+    var moved = order.join() !== items.map(function (t) { return t.id; }).join();
+    items = order.map(find);
+    if (moved) touch();
+  }
+  document.addEventListener('pointerup', endDrag);
+  document.addEventListener('pointercancel', endDrag);
+
+  // ===== Фото: уменьшаем в браузере и загружаем на Google Диск через скрипт =====
+  function shrink(file, cb) {
+    var img = new Image(), url = URL.createObjectURL(file);
+    img.onload = function () {
+      var max = 1200, k = Math.min(1, max / Math.max(img.width, img.height));
+      var c = document.createElement('canvas');
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      var ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      var data = c.toDataURL('image/webp', 0.85);
+      if (data.indexOf('data:image/webp') !== 0) data = c.toDataURL('image/jpeg', 0.85);
+      cb(null, data);
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); cb(new Error('Не удалось открыть файл как картинку')); };
+    img.src = url;
+  }
+  $('file').addEventListener('change', function () {
+    var file = this.files[0], t = photoFor; if (!file || !t) return;
+    shrink(file, function (err, dataUrl) {
+      if (err) { alert(err.message); return; }
+      var old = t.img;
+      t.img = dataUrl; t.pos = '50% 50%'; t._busy = true; uploading++;
+      render(); refreshSave();
+      api({ action: 'uploadImage', password: password, dataUrl: dataUrl, name: t.name || t.id }).then(function (d) {
+        if (!d.success) throw new Error(d.message || 'ошибка загрузки');
+        t.img = d.url; dirty = true;
+      }).catch(function (e) {
+        t.img = old;
+        alert('Фото не загрузилось: ' + (e.message || e));
+      }).then(function () {
+        delete t._busy; uploading--; render(); refreshSave();
+        if (!uploading && !dirty) status('');
+      });
+    });
+  });
+
+  // ===== Сохранение =====
+  $('save').addEventListener('click', function () {
+    var bad = null;
+    items.forEach(function (t) {
+      var card = $('grid').querySelector('.card[data-id="' + t.id + '"]');
+      if (!String(t.name).trim()) { card.querySelector('[data-f=name]').classList.add('bad'); bad = bad || card; }
+      if (!(t.price > 0)) { card.querySelector('[data-f=price]').classList.add('bad'); bad = bad || card; }
+    });
+    if (bad) { status('Заполните название и цену — поля отмечены красным', 'bad'); bad.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    saving = true; refreshSave();
+    var clean = items.map(function (t) {
+      return { id: t.id, name: String(t.name).trim(), spec: String(t.spec || '').trim(), price: t.price, deposit: t.deposit, img: t.img, pos: t.pos || '50% 50%' };
+    });
+    api({ action: 'saveProducts', password: password, products: clean }).then(function (d) {
+      if (d.auth === false) { try { sessionStorage.removeItem(PW_KEY); } catch (e) {} throw new Error('пароль больше не подходит, войдите заново'); }
+      if (!d.success) throw new Error(d.message || 'ошибка');
+      dirty = false; saving = false; refreshSave();
+      status('Сохранено ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) + ' — уже на сайте');
+    }).catch(function (e) {
+      saving = false; refreshSave();
+      status('Не сохранилось: ' + (e.message || e), 'bad');
+    });
+  });
+
+  window.addEventListener('beforeunload', function (e) {
+    if (dirty || uploading) { e.preventDefault(); e.returnValue = ''; }
+  });
+})();
+</script>
+</body>
+</html>
