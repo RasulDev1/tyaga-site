@@ -1,7 +1,7 @@
 // ===== НАСТРОЙКИ =====
 // Адрес скрипта (SHEET_URL) и каталог по умолчанию — в js/catalog.js. Товары правятся в admin.html.
-var PHONE_DISPLAY = '+7 (989) 932-87-75';
-var PHONE_LINK = 'tel:+79899328775';
+var PHONE_DISPLAY = '+7 (900) 000-00-00';
+var PHONE_LINK = 'tel:+79000000000';
 
 // Доставка: null — «рассчитаем при звонке», 0 — «бесплатно», число — фиксированная цена в рублях
 var DELIVERY_PRICE = null;
