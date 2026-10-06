@@ -5,7 +5,7 @@ a{color:#141414;text-decoration:none}a:hover{color:#8A6A00}
 button{cursor:pointer;font-family:inherit}
 input{font-family:inherit}
 img{max-width:100%;display:block}
-.wrap{width:100%;max-width:1280px;margin:0 auto;padding-left:40px;padding-right:40px}
+.wrap{width:100%;max-width:1500px;margin:0 auto;padding-left:40px;padding-right:40px}
 
 .topbar{background:#0E0E0E;color:#D8D5CC;font-size:14px}
 .topbar .wrap{padding-top:10px;padding-bottom:10px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
