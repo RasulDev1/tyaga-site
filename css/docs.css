@@ -18,5 +18,17 @@ a{color:#8A6A00}
 .wrap-t{overflow-x:auto}
 .fill{background:#FFF4B8;padding:0 3px;border-radius:3px}
 footer{text-align:center;color:#5C5950;font-size:13px;padding:0 24px 40px}
-@media (max-width:600px){.doc{padding:26px 20px}h1{font-size:25px}}
+@media (max-width:600px){
+  header .in{padding:14px 16px}
+  main{margin:16px auto 40px;padding:0 12px}
+  .doc{padding:24px 18px;border-radius:12px}
+  h1{font-size:clamp(21px,6.5vw,25px);overflow-wrap:anywhere}
+  h2{font-size:18px}
+  p,li{font-size:15px}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100% !important}
+  .tbl tr{border:1px solid #E2E0D8;border-radius:8px;margin-bottom:8px;overflow:hidden}
+  .tbl td{border:none;padding:8px 12px}
+  .tbl td:first-child{padding-bottom:4px}
+  .fill{overflow-wrap:anywhere}
+}
 @media print{header,footer{display:none}body{background:#fff}.doc{padding:0}.fill{background:none}}

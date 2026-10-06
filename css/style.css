@@ -276,9 +276,26 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
   .fc-btn:not(.fc-call) svg{color:#FFD400}
   .float-chat.away{opacity:1;transform:none;pointer-events:auto}
 }
-@media (max-width:360px){
-  h1{font-size:28px}
+/* --- Плавная подстройка под ширину телефона --- */
+@media (max-width:600px){
+  .wrap{padding-left:clamp(12px,4vw,20px);padding-right:clamp(12px,4vw,20px)}
+  h1{font-size:clamp(25px,8.2vw,40px)}
+  h2,.form-box h2{font-size:clamp(22px,7vw,30px)}
+  .hero p{font-size:clamp(15px,4.2vw,17px)}
+  .hero-img{height:clamp(170px,58vw,320px)}
+  .card-img{height:clamp(100px,32vw,180px)}
+  .card-name{font-size:clamp(14px,4vw,17px)}
+  .card-prices .p{font-size:clamp(17px,5vw,22px)}
+  .grid{gap:clamp(8px,2.6vw,14px)}
+  .feat{font-size:clamp(13px,3.7vw,15px)}
+  .fc-btn{min-width:0;white-space:nowrap;font-size:clamp(12px,3.6vw,15px)}
+  .fc-btn svg{width:clamp(17px,5vw,22px);height:clamp(17px,5vw,22px);flex-shrink:0}
+  .float-chat{gap:clamp(5px,2vw,8px);padding-left:clamp(8px,3vw,12px);padding-right:clamp(8px,3vw,12px)}
+}
+@media (max-width:359px){
+  .hero-btns{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
-  .card-img{height:170px}
-  .fc-btn{font-size:13px}
+  .card-img{height:160px}
+  .features .wrap{grid-template-columns:1fr}
+  .fc-btn{padding:11px 4px;gap:4px}
 }
