@@ -306,7 +306,7 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
   footer .wrap{padding-top:24px;padding-bottom:18px;gap:18px}
   .fcols{grid-template-columns:1fr 1fr;gap:16px 14px}
   .fcol{gap:4px}
-  .fcol:first-child{grid-column:1/-1;flex-direction:row;align-items:baseline;gap:10px}
+  .fcol:first-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:14px}
   .fcol .brand{font-size:20px}
   .fcol p{font-size:13px;line-height:1.4}
   .fcol .h{font-size:11px}
@@ -314,9 +314,6 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
   .fcol span,.fcol .mail{font-size:13px}
   .fcol .mail{word-break:normal;overflow-wrap:anywhere}
   .fcol .soft{display:none}
-  .fcol:nth-child(3){grid-column:1/-1;order:3;flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
-  .fcol:nth-child(3) .h{flex-basis:100%}
-  .fcol:nth-child(3) .mail{overflow-wrap:normal;white-space:nowrap}
   .fcol:nth-child(4){order:2}
   .messengers{gap:12px}
   .messengers a{font-size:13px}
@@ -348,4 +345,18 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
 }
 @media (max-width:374px){
   .fields input[type=date]{font-size:14px;padding:0 4px 0 8px}
+}
+
+/* --- Футер: доставка и почта отдельными подписями --- */
+.fsub{display:contents}
+.h-one{display:none}
+@media (max-width:600px){
+  .fcol-dm{grid-column:1/-1;order:3;display:grid;grid-template-columns:auto 1fr;gap:14px}
+  .fcol-dm .h-both{display:none}
+  .fcol-dm .h-one{display:block}
+  .fsub{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .fcol-dm .mail{white-space:nowrap}
+}
+@media (max-width:359px){
+  .fcol-dm{grid-template-columns:1fr;gap:12px}
 }
