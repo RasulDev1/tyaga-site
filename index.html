@@ -10,9 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="preload" as="image" href="images/perforator.webp" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 <script src="js/catalog.js?v=1" defer></script>
-<script src="js/script.js?v=5" defer></script>
+<script src="js/script.js?v=6" defer></script>
 </head>
 <body>
 
@@ -26,13 +26,15 @@
     <span class="logo-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"/></svg></span>
     <span class="logo-text"><b>ТЯГА</b><span>прокат инструмента</span></span>
   </a>
-  <nav>
+  <nav id="menu">
     <a href="#catalog">Каталог</a>
     <a href="#how">Как арендовать</a>
     <a href="#booking">Бронирование</a>
     <a href="#contacts">Контакты</a>
     <a href="#booking" class="btn-y">Оставить заявку</a>
+    <a href="tel:+79000000000" class="nav-tel">+7 (900) 000-00-00</a>
   </nav>
+  <button type="button" class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
 </div></header>
 
 <section id="top" class="hero"><div class="wrap">
@@ -125,7 +127,8 @@
   <div class="fbottom"><span>© 2026 ТЯГА</span><span class="flinks"><a href="privacy.html">Политика обработки персональных данных</a><a href="consent.html">Согласие на обработку ПДн</a></span><span>Инструмент выдаётся по паспорту.</span></div>
 </div></footer>
 
-<div class="float-chat" aria-label="Написать в мессенджер">
+<div class="float-chat" aria-label="Связаться с нами">
+  <a href="tel:+79000000000" class="fc-btn fc-call"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>Позвонить</span></a>
   <a href="https://wa.me/79000000000" target="_blank" rel="noopener" class="fc-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span>WhatsApp</span></a>
   <a href="https://t.me/+79000000000" target="_blank" rel="noopener" class="fc-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg><span>Telegram</span></a>
 </div>

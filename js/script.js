@@ -229,6 +229,13 @@ var DELIVERY_PRICE = null;
     .then(function () { clearTimeout(timer); btn.disabled = false; btn.textContent = 'Забронировать'; });
   });
 
+  // Мобильное меню
+  var menu = $('menu'), burger = $('burger');
+  function setMenu(open) { menu.classList.toggle('open', open); burger.classList.toggle('open', open); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  burger.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click', function (e) { if (!e.target.closest('header')) setMenu(false); });
+
   // Плавающие кнопки мессенджеров прячем, пока на экране форма бронирования и подвал — чтобы не закрывали кнопки
   if ('IntersectionObserver' in window) {
     var visible = {};

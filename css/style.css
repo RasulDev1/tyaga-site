@@ -5,6 +5,7 @@ a{color:#141414;text-decoration:none}a:hover{color:#8A6A00}
 button{cursor:pointer;font-family:inherit}
 input{font-family:inherit}
 img{max-width:100%;display:block}
+[hidden]{display:none !important}
 .wrap{width:100%;max-width:1500px;margin:0 auto;padding-left:40px;padding-right:40px}
 
 .topbar{background:#0E0E0E;color:#D8D5CC;font-size:14px}
@@ -186,3 +187,98 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
 }
 .float-chat{transition:opacity .2s,transform .2s}
 .float-chat.away{opacity:0;transform:translateY(12px);pointer-events:none}
+
+/* --- Мобильное меню --- */
+.burger{display:none;width:48px;height:48px;border:none;border-radius:8px;background:#2A2A2A;padding:0;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex-shrink:0}
+.burger span{display:block;width:22px;height:2.5px;border-radius:2px;background:#FFD400;transition:transform .2s,opacity .2s}
+.burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.nav-tel,.fc-call{display:none !important}
+@media (max-width:1100px){
+  header .wrap{position:relative;gap:16px}
+  .burger{display:flex}
+  nav{margin-left:auto}
+  nav.open{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:#141414;border-bottom:4px solid #FFD400;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;box-shadow:0 16px 30px rgba(0,0,0,.35)}
+  nav.open a:not(.btn-y){display:block !important;padding:15px 4px;border-bottom:1px solid #2A2A2A;font-size:18px}
+  nav.open .nav-tel{color:#FFD400;font-weight:800;border-bottom:none !important}
+  nav.open .btn-y{margin-top:14px;text-align:center;padding:16px;font-size:17px}
+}
+
+/* --- Телефон --- */
+@media (max-width:600px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .topbar{display:none}
+  header .wrap{padding-top:12px;padding-bottom:12px}
+  .logo-mark{width:40px;height:40px}
+  .logo-text b{font-size:22px}
+  nav:not(.open) .btn-y{display:none}
+  nav.open{padding-left:16px;padding-right:16px}
+
+  .hero .wrap{padding-top:28px;padding-bottom:32px;gap:24px}
+  .hero-l{gap:18px}
+  h1{font-size:31px;letter-spacing:-.5px}
+  .hero p{font-size:16px;line-height:1.55}
+  .hero-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hero-btns .main,.hero-btns .ghost{padding:15px 10px;font-size:16px;text-align:center}
+  .hero-img{height:220px;border-radius:12px}
+  .hero-badge{left:12px;bottom:12px;padding:10px 14px}
+  .hero-badge b{font-size:17px}
+
+  .features .wrap{padding-top:20px;padding-bottom:20px;gap:14px 12px}
+  .feat{gap:10px;font-size:14px}
+  .feat i{width:38px;height:38px;border-radius:8px}
+  .feat i svg{width:20px;height:20px}
+
+  section.block .wrap{padding-top:40px;padding-bottom:40px;gap:22px}
+  h2{font-size:27px}
+  .sub{font-size:15px;line-height:1.45}
+
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card{border-width:1.5px;border-radius:12px}
+  .card-img{height:120px}
+  .card-tag{top:8px;left:8px;font-size:10px;padding:4px 7px}
+  .card-body{padding:12px;gap:10px}
+  .card-name{font-size:15px}
+  .card-spec{font-size:12.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card-prices{flex-direction:column;align-items:flex-start;gap:4px}
+  .card-prices small{font-size:12px;display:inline;margin-right:4px}
+  .card-prices .p{font-size:19px}
+  .card-prices .d{font-size:13px;text-align:left;color:#5C5950}
+  .card button{height:42px;font-size:15px}
+
+  .step{padding:20px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 14px}
+  .step .n{width:38px;height:38px;font-size:16px}
+  .step b{font-size:18px}
+  .step span:last-child{flex-basis:100%;font-size:15px}
+
+  .booking .wrap{gap:16px}
+  .form-box,.calc{padding:20px;border-radius:14px;gap:18px}
+  .form-box h2{font-size:27px}
+  .chosen{flex-direction:row;align-items:flex-end;padding:12px;gap:12px}
+  .chosen-img{width:72px;height:54px}
+  .fields{gap:14px}
+  .fields input,.tool-pick select{height:52px;font-size:16px}
+  .row{font-size:16px}
+
+  footer .wrap{padding-top:40px;padding-bottom:28px;gap:32px}
+  .fcols{gap:26px}
+  .fbottom{flex-direction:column;gap:10px}
+  .flinks{flex-direction:column;gap:8px}
+
+  /* нижняя панель: позвонить / WhatsApp / Telegram */
+  body{padding-bottom:76px}
+  .float-chat{left:0;right:0;bottom:0;flex-direction:row;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#141414;border-top:3px solid #FFD400}
+  .fc-call{display:flex !important}
+  .fc-btn{flex:1;justify-content:center;padding:12px 6px;border-radius:10px;box-shadow:none;font-size:14px;gap:6px}
+  .fc-btn span{display:inline}
+  .fc-btn:not(.fc-call){background:#2A2A2A;color:#fff !important;border-color:#2A2A2A}
+  .fc-btn:not(.fc-call) svg{color:#FFD400}
+  .float-chat.away{opacity:1;transform:none;pointer-events:auto}
+}
+@media (max-width:360px){
+  h1{font-size:28px}
+  .grid{grid-template-columns:1fr}
+  .card-img{height:170px}
+  .fc-btn{font-size:13px}
+}
