@@ -360,3 +360,6 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
 @media (max-width:359px){
   .fcol-dm{grid-template-columns:1fr;gap:12px}
 }
+
+/* --- Текст в кнопках первого экрана всегда по центру --- */
+.hero-btns .main,.hero-btns .ghost{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.25}
