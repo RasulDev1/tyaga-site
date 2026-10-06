@@ -1,7 +1,7 @@
 // ===== НАСТРОЙКИ =====
 // Адрес скрипта (SHEET_URL) и каталог по умолчанию — в js/catalog.js. Товары правятся в admin.html.
-var PHONE_DISPLAY = '+7 (900) 000-00-00';
-var PHONE_LINK = 'tel:+79000000000';
+var PHONE_DISPLAY = '+7 *** *** ** **';
+var PHONE_LINK = '#';
 
 // Доставка: null — «рассчитаем при звонке», 0 — «бесплатно», число — фиксированная цена в рублях
 var DELIVERY_PRICE = null;
@@ -227,6 +227,12 @@ var DELIVERY_PRICE = null;
         (isLocal ? '<br><small style="opacity:.8">Техническая причина (видно только при локальном запуске): ' + esc(reason) + '</small>' : ''), false);
     })
     .then(function () { clearTimeout(timer); btn.disabled = false; btn.textContent = 'Забронировать'; });
+  });
+
+  // Кнопки звонка и мессенджеров пока не активны: нажимаются, но никуда не ведут
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-off], #msg a[href="#"]');
+    if (a) e.preventDefault();
   });
 
   // Мобильное меню
