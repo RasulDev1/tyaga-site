@@ -335,3 +335,17 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
   .step b{font-size:15px;line-height:1.25}
   .step span:last-child{flex-basis:auto;font-size:13px;line-height:1.45}
 }
+
+/* --- Форма бронирования на телефоне: по 2 поля в ряд --- */
+@media (max-width:600px){
+  .fields{grid-template-columns:1fr 1fr;gap:12px 10px}
+  .fields label{gap:6px;font-size:14px;min-width:0}
+  .fields input:not([type=checkbox]){height:48px;padding:0 10px;font-size:16px;min-width:0}
+  .fields input[type=date]{padding:0 6px 0 10px}
+  .fields input[type=date]::-webkit-calendar-picker-indicator{margin-left:2px;padding:0}
+  .fields .wide,.consent,.consent-err{grid-column:1/-1}
+  .ferr{font-size:12px}
+}
+@media (max-width:374px){
+  .fields input[type=date]{font-size:14px;padding:0 4px 0 8px}
+}
