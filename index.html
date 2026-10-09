@@ -10,9 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="preload" as="image" href="images/perforator.webp" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=15">
+<link rel="stylesheet" href="css/style.css?v=16">
 <script src="js/catalog.js?v=1" defer></script>
-<script src="js/script.js?v=8" defer></script>
+<script src="js/script.js?v=9" defer></script>
 </head>
 <body>
 
@@ -102,7 +102,9 @@
     <button type="button" id="calcBtn" class="calc-btn">Узнать стоимость / Забронировать</button>
   </div>
 
-  <div class="calc">
+  <div class="calc-backdrop" id="calcBackdrop"></div>
+  <div class="calc" id="calcModal" role="dialog" aria-modal="true" aria-label="Стоимость">
+    <button type="button" class="calc-close" id="calcClose" aria-label="Закрыть">&times;</button>
     <b>Стоимость</b>
     <div class="row"><span>Срок аренды</span><span id="days">—</span></div>
     <div class="row"><span>Цена за сутки</span><span id="price">—</span></div>

@@ -166,13 +166,27 @@ var DELIVERY_PRICE = null;
   $('address').addEventListener('input', function () { if (touched.address) check('address'); });
   ['name', 'phone', 'address'].forEach(function (id) { $(id).addEventListener('blur', function () { touched[id] = true; check(id); }); });
 
-  // Телефон: сначала заполнить форму, потом «Узнать стоимость» открывает расчёт с кнопкой «Забронировать»
+  // Телефон: «Узнать стоимость / Забронировать» после проверки формы открывает расчёт окном поверх страницы
+  function openCalc() { document.body.classList.add('modal-open'); $('calcClose').focus(); }
+  function closeCalc() { document.body.classList.remove('modal-open'); }
   $('calcBtn').addEventListener('click', function () {
     if (!checkAll() || !calc().valid) { showWarn('Заполните все поля корректно — ошибки отмечены красным.'); return; }
     showWarn('');
-    document.getElementById('booking').classList.add('show-calc');
-    document.querySelector('.calc').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    openCalc();
   });
+  $('calcClose').addEventListener('click', closeCalc);
+  $('calcBackdrop').addEventListener('click', closeCalc);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCalc(); });
+
+  // Панель связи на телефоне показываем только пока идёт прокрутка
+  (function () {
+    var fc = document.querySelector('.float-chat'), t;
+    window.addEventListener('scroll', function () {
+      fc.classList.add('scrolling');
+      clearTimeout(t);
+      t = setTimeout(function () { fc.classList.remove('scrolling'); }, 1500);
+    }, { passive: true });
+  })();
 
   $('bookBtn').addEventListener('click', function () {
     var c = cur(), k = calc();
