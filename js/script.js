@@ -184,7 +184,7 @@ var DELIVERY_PRICE = null;
     window.addEventListener('scroll', function () {
       fc.classList.add('scrolling');
       clearTimeout(t);
-      t = setTimeout(function () { fc.classList.remove('scrolling'); }, 1000);
+      t = setTimeout(function () { fc.classList.remove('scrolling'); }, 600);
     }, { passive: true });
   })();
 
