@@ -166,6 +166,14 @@ var DELIVERY_PRICE = null;
   $('address').addEventListener('input', function () { if (touched.address) check('address'); });
   ['name', 'phone', 'address'].forEach(function (id) { $(id).addEventListener('blur', function () { touched[id] = true; check(id); }); });
 
+  // Телефон: сначала заполнить форму, потом «Узнать стоимость» открывает расчёт с кнопкой «Забронировать»
+  $('calcBtn').addEventListener('click', function () {
+    if (!checkAll() || !calc().valid) { showWarn('Заполните все поля корректно — ошибки отмечены красным.'); return; }
+    showWarn('');
+    document.getElementById('booking').classList.add('show-calc');
+    document.querySelector('.calc').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   $('bookBtn').addEventListener('click', function () {
     var c = cur(), k = calc();
     if (!checkAll() || !k.valid) { showWarn('Заполните все поля корректно — ошибки отмечены красным.'); return; }

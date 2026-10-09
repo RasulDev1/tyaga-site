@@ -364,11 +364,16 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
 /* --- Текст в кнопках первого экрана всегда по центру --- */
 .hero-btns .main,.hero-btns .ghost{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.25}
 
-/* --- Телефон: форма заявки и блок «Стоимость» — одна карточка --- */
+/* --- Телефон: сначала форма и кнопка «Узнать стоимость», затем расчёт с «Забронировать» в той же карточке --- */
+.calc-btn{display:none}
 @media (max-width:860px){
   .booking .wrap{gap:0 !important}
-  .booking .form-box{border-radius:14px 14px 0 0;padding-bottom:20px}
-  .booking .calc{border-radius:0 0 14px 14px;align-self:stretch;position:relative}
-  .booking .calc::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:#FFD400}
+  .booking .calc{display:none}
+  .booking.show-calc .calc{display:flex;border-radius:0 0 14px 14px;align-self:stretch;position:relative;scroll-margin-top:80px}
+  .booking.show-calc .calc::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:#FFD400}
+  .booking.show-calc .form-box{border-radius:14px 14px 0 0;padding-bottom:20px}
   .booking .note{padding-top:14px;border-top:1px dashed #E2E0D8}
+  .calc-btn{display:block;height:56px;border-radius:8px;border:none;background:#141414;color:#FFD400;font-weight:800;font-size:17px;width:100%}
+  .calc-btn:active{opacity:.85}
+  .booking.show-calc .calc-btn{display:none}
 }
