@@ -5,14 +5,14 @@ var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwX9mU2-DTutYcObEBymqs_
 // Каталог по умолчанию. Показывается, пока в админ-панели ничего не сохранено (или если скрипт не ответил).
 // Цены и товары теперь удобнее менять через admin.html.
 var DEFAULT_TOOLS = [
-  { id:'drill',   name:'Перфоратор SDS-Plus',        spec:'800 Вт, 3 режима, бурение до 26 мм',          price:500,  deposit:5000,  img:'images/perforator.webp',     pos:'50% 50%' },
+  { id:'drill',   name:'Перфоратор SDS-Plus',        spec:'800 Вт, 3 режима, бурение до 26 мм',          price:500,  deposit:5000,  img:'images/perforator.webp',     pos:'50% 70%' },
   { id:'screw',   name:'Шуруповёрт аккумуляторный',  spec:'18 В, 2 аккумулятора, зарядное устройство',   price:400,  deposit:3000,  img:'images/shurupovert.webp',    pos:'50% 50%' },
-  { id:'grinder', name:'УШМ (болгарка) 230 мм',      spec:'2200 Вт, плавный пуск, защитный кожух',       price:450,  deposit:4000,  img:'images/bolgarka.webp',       pos:'50% 50%' },
-  { id:'saw',     name:'Циркулярная пила',           spec:'1400 Вт, глубина пропила до 65 мм',           price:600,  deposit:6000,  img:'images/pila.webp',           pos:'50% 50%' },
+  { id:'grinder', name:'УШМ (болгарка) 230 мм',      spec:'2200 Вт, плавный пуск, защитный кожух',       price:450,  deposit:4000,  img:'images/bolgarka.webp',       pos:'50% 62%' },
+  { id:'saw',     name:'Циркулярная пила',           spec:'1400 Вт, глубина пропила до 65 мм',           price:600,  deposit:6000,  img:'images/pila.webp',           pos:'50% 62%' },
   { id:'level',   name:'Лазерный нивелир',           spec:'3 плоскости по 360°, штатив в комплекте',     price:700,  deposit:10000, img:'images/nivelir.webp',        pos:'50% 50%' },
-  { id:'breaker', name:'Отбойный молоток',           spec:'1600 Вт, SDS-Max, энергия удара 25 Дж',       price:1200, deposit:15000, img:'images/otboynik.webp',       pos:'50% 50%' },
+  { id:'breaker', name:'Отбойный молоток',           spec:'1600 Вт, SDS-Max, энергия удара 25 Дж',       price:1200, deposit:15000, img:'images/otboynik.webp',       pos:'50% 60%' },
   { id:'mixer',   name:'Бетономешалка 180 л',        spec:'800 Вт, 220 В, на колёсах',                   price:900,  deposit:8000,  img:'images/betonomeshalka.webp', pos:'50% 50%' },
-  { id:'vacuum',  name:'Строительный пылесос',       spec:'30 л, класс пыли L, розетка для инструмента', price:500,  deposit:5000,  img:'images/pylesos.webp',        pos:'50% 50%' }
+  { id:'vacuum',  name:'Строительный пылесос',       spec:'30 л, класс пыли L, розетка для инструмента', price:500,  deposit:5000,  img:'images/pylesos.webp',        pos:'50% 25%' }
 ];
 // =====================
 

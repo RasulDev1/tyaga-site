@@ -36,7 +36,7 @@ h1 span{color:#FFD400}
 .hero-btns .main{background:#FFD400;color:#141414;padding:18px 30px;border-radius:8px;font-weight:800;font-size:17px}
 .hero-btns .ghost{border:2px solid #4A4A4A;color:#fff;padding:16px 28px;border-radius:8px;font-weight:700;font-size:17px}
 .hero-img{background:#FFD400;border-radius:16px;height:420px;position:relative;overflow:hidden}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 70%}
 .hero-badge{position:absolute;left:24px;bottom:24px;background:#141414;color:#fff;padding:14px 18px;border-radius:10px;display:flex;flex-direction:column;gap:2px}
 .hero-badge span{font-size:13px;color:#BDB9AE}
 .hero-badge b{font-weight:800;font-size:20px}
