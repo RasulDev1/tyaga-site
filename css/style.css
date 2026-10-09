@@ -388,3 +388,7 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
   .float-chat,.float-chat.away{opacity:0;transform:translateY(110%);pointer-events:none}
   .float-chat.scrolling,.float-chat.away.scrolling{opacity:1;transform:none;pointer-events:auto}
 }
+
+/* --- Пометка «компания вымышленная» --- */
+.fiction-note{position:fixed;left:8px;bottom:8px;z-index:5;max-width:min(330px,82vw);padding:5px 8px;border-radius:6px;background:rgba(20,20,20,.78);color:#E8E4D8;font-family:'Share Tech Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.35;letter-spacing:.2px;pointer-events:none}
+@media print{.fiction-note{display:none}}

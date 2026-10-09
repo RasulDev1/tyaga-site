@@ -32,3 +32,7 @@ footer{text-align:center;color:#5C5950;font-size:13px;padding:0 24px 40px}
   .fill{overflow-wrap:anywhere}
 }
 @media print{header,footer{display:none}body{background:#fff}.doc{padding:0}.fill{background:none}}
+
+/* --- Пометка «компания вымышленная» --- */
+.fiction-note{position:fixed;left:8px;bottom:8px;z-index:5;max-width:min(330px,82vw);padding:5px 8px;border-radius:6px;background:rgba(20,20,20,.78);color:#E8E4D8;font-family:'Share Tech Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.35;letter-spacing:.2px;pointer-events:none}
+@media print{.fiction-note{display:none}}
