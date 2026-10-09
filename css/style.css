@@ -392,17 +392,3 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
 /* --- Пометка «компания вымышленная» --- */
 .fiction-note{position:fixed;left:8px;bottom:8px;z-index:5;max-width:min(330px,82vw);padding:5px 8px;border-radius:6px;background:rgba(20,20,20,.78);color:#E8E4D8;font-family:'Share Tech Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;line-height:1.35;letter-spacing:.2px;pointer-events:none}
 @media print{.fiction-note{display:none}}
-
-/* --- Без фотографий: вместо них значок инструмента --- */
-.hero-img{display:flex;align-items:center;justify-content:center}
-.hero-ico{display:block;width:44%;max-width:240px;color:#141414}
-.hero-ico svg{width:100%;height:auto}
-.card-img{display:flex;align-items:center;justify-content:center;height:96px;background:#141414}
-.card-ico{display:block;width:44px;height:44px;color:#FFD400}
-.card-ico svg{width:100%;height:100%}
-.chosen-img{background:#141414;color:#FFD400}
-@media (max-width:600px){
-  .grid .card-img{height:64px}
-  .card-ico{width:32px;height:32px}
-  .hero-ico{width:34%}
-}

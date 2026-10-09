@@ -44,7 +44,7 @@ var DELIVERY_PRICE = null;
     $('grid').innerHTML = TOOLS.map(function (t) {
       var sel = t.id === picked;
       return '<div class="card' + (sel ? ' sel' : '') + '">' +
-        '<div class="card-img"><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"/></svg></span><span class="card-tag">ВЫБРАНО</span></div>' +
+        '<div class="card-img"><img loading="lazy" src="' + esc(t.img) + '" alt="' + esc(t.name) + '" style="object-position:' + esc(t.pos || '50% 50%') + '"><span class="card-tag">ВЫБРАНО</span></div>' +
         '<div class="card-body"><div class="card-info"><div class="card-name">' + esc(t.name) + '</div><div class="card-spec">' + esc(t.spec) + '</div></div>' +
         '<div class="card-prices"><div><small>Сутки</small><span class="p">' + rub(t.price) + '</span></div><div class="d"><small>Залог</small>' + rub(t.deposit) + '</div></div>' +
         '<button type="button" data-id="' + esc(t.id) + '">' + (sel ? 'Выбрано' : 'Выбрать') + '</button></div></div>';
@@ -61,6 +61,8 @@ var DELIVERY_PRICE = null;
 
   function render() {
     var c = cur(), k = calc();
+    if (c) { $('selImg').src = c.img; $('selImg').alt = c.name; $('selImg').style.objectPosition = c.pos || '50% 50%'; }
+    $('selImg').hidden = !c; $('selPh').style.display = c ? 'none' : '';
     $('days').textContent = k.valid ? k.days + ' ' + word(k.days) : '—';
     $('price').textContent = c ? rub(c.price) : '—';
     $('rent').textContent = c && k.valid ? rub(k.days * c.price) : '—';

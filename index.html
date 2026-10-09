@@ -9,9 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap">
-<link rel="stylesheet" href="css/style.css?v=23">
-<script src="js/catalog.js?v=2" defer></script>
-<script src="js/script.js?v=12" defer></script>
+<link rel="preload" as="image" href="images/perforator.webp" fetchpriority="high">
+<link rel="stylesheet" href="css/style.css?v=22">
+<script src="js/catalog.js?v=1" defer></script>
+<script src="js/script.js?v=11" defer></script>
 </head>
 <body>
 
@@ -47,7 +48,7 @@
     </div>
   </div>
   <div class="hero-img">
-    <span class="hero-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"/></svg></span>
+    <img src="images/perforator.webp" alt="Мастер работает перфоратором SDS-Plus">
     <div class="hero-badge"><span>Перфоратор SDS-Plus</span><b>от 500 ₽ / сутки</b></div>
   </div>
 </div></section>
@@ -80,7 +81,7 @@
   <div class="form-box">
     <h2>Бронирование</h2>
     <div class="chosen">
-      <div class="chosen-img" id="selImgBox"><svg id="selPh" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"/></svg></div>
+      <div class="chosen-img" id="selImgBox"><img id="selImg" src="" alt="" hidden><svg id="selPh" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"/></svg></div>
       <label class="tool-pick">Инструмент
         <select id="tool" required><option value="">— Выберите инструмент —</option></select>
         <small class="ferr" id="e-tool"></small>
