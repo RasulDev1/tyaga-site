@@ -373,7 +373,7 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
   .booking.show-calc .calc::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:#FFD400}
   .booking.show-calc .form-box{border-radius:14px 14px 0 0;padding-bottom:20px}
   .booking .note{padding-top:14px;border-top:1px dashed #E2E0D8}
-  .calc-btn{display:block;height:56px;border-radius:8px;border:none;background:#141414;color:#FFD400;font-weight:800;font-size:17px;width:100%}
+  .calc-btn{display:block;height:56px;border-radius:8px;border:none;background:#141414;color:#FFD400;font-weight:800;font-size:clamp(14px,4.3vw,17px);width:100%;padding:0 8px}
   .calc-btn:active{opacity:.85}
   .booking.show-calc .calc-btn{display:none}
 }
