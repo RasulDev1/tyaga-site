@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="preload" as="image" href="images/perforator.webp" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=19">
+<link rel="stylesheet" href="css/style.css?v=20">
 <script src="js/catalog.js?v=1" defer></script>
 <script src="js/script.js?v=9" defer></script>
 </head>
@@ -93,11 +93,11 @@
       <label>Имя<input type="text" id="name" placeholder="Ваше имя" autocomplete="name" maxlength="60" required><small class="ferr" id="e-name"></small></label>
       <label>Телефон<input type="tel" id="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required><small class="ferr" id="e-phone"></small></label>
       <label class="wide">Адрес доставки<input type="text" id="address" placeholder="Улица, дом, корпус" autocomplete="street-address" maxlength="200" required><small class="ferr" id="e-address"></small></label>
+      <button type="button" id="calcBtn" class="calc-btn">Узнать стоимость / Забронировать</button>
       <label class="consent"><input type="checkbox" id="agree"><span>Я даю <a href="consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="privacy.html" target="_blank">Политикой обработки персональных данных</a></span></label>
       <small class="ferr consent-err" id="e-agree"></small>
       <input type="text" id="honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     </div>
-    <button type="button" id="calcBtn" class="calc-btn">Узнать стоимость / Забронировать</button>
     <p class="warn" id="warn"></p>
     <p class="note">Сутки считаются от даты получения до даты возврата. Получили и вернули в один день — одни сутки.</p>
   </div>

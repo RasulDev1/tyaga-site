@@ -369,7 +369,7 @@ footer .wrap{padding-top:64px;padding-bottom:36px;display:flex;flex-direction:co
 @media (max-width:860px){
   .booking .wrap{gap:0 !important}
   .booking .note{margin-top:-6px}
-  .calc-btn{display:block;height:56px;border-radius:8px;border:none;background:#141414;color:#FFD400;font-weight:800;font-size:clamp(14px,4.3vw,17px);width:100%;padding:0 8px}
+  .calc-btn{display:block;grid-column:1/-1;height:56px;border-radius:8px;border:none;background:#141414;color:#FFD400;font-weight:800;font-size:clamp(14px,4.3vw,17px);width:100%;padding:0 8px}
   .calc-btn:active{opacity:.85}
   .booking .calc{display:none}
   body.modal-open{overflow:hidden}
