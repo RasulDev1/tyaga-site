@@ -1,0 +1,48 @@
+/* Тёмная тема для демо (demo.html). Действует только при классе demo-dark на <html>. */
+html.demo-dark{color-scheme:dark}
+html.demo-dark body{background:#0F0F0E;color:#ECEAE4}
+
+/* ===== Сайт ===== */
+html.demo-dark a{color:#ECEAE4}
+html.demo-dark a:hover{color:#FFD400}
+html.demo-dark .features,html.demo-dark .how,html.demo-dark .form-box{background:#1A1A19;border-color:#2A2A28}
+html.demo-dark .feat i{background:#2A2A28}
+html.demo-dark .sub,html.demo-dark .card-spec,html.demo-dark .card-prices small,html.demo-dark .card-prices .d,
+html.demo-dark .grid-note,html.demo-dark .step span,html.demo-dark .chosen small,html.demo-dark .note{color:#A8A49A}
+html.demo-dark .card{background:#1A1A19;border-color:#2E2D2A}
+html.demo-dark .card.sel{border-color:#FFD400}
+html.demo-dark .card-img{background:#262624}
+html.demo-dark .card button[data-id]{background:transparent;color:#ECEAE4;border-color:#ECEAE4}
+html.demo-dark .card.sel button[data-id]{background:#FFD400;color:#141414;border-color:#FFD400}
+html.demo-dark .step,html.demo-dark .chosen{background:#262624}
+html.demo-dark .chosen-img{background:#33322F}
+html.demo-dark .fields input,html.demo-dark .tool-pick select{background:#0F0F0E;color:#ECEAE4;border-color:#55534E}
+html.demo-dark .fields input:focus,html.demo-dark .tool-pick select:focus{border-color:#FFD400}
+html.demo-dark .fields input.err,html.demo-dark .tool-pick select.err{border-color:#FF8A80}
+html.demo-dark .ferr,html.demo-dark .warn{color:#FF8A80}
+html.demo-dark .consent{color:#CFCBC0}
+html.demo-dark .consent a{color:#ECEAE4}
+html.demo-dark .consent input{accent-color:#FFD400}
+html.demo-dark .calc{background:#1F1F1E;border:1px solid #2E2D2A}
+html.demo-dark .calc-btn{background:#FFD400;color:#141414}
+
+/* ===== Админ-панель ===== */
+html.demo-dark .login,html.demo-dark main .card{background:#1A1A19;border-color:#2E2D2A}
+html.demo-dark .login input,html.demo-dark .card input,html.demo-dark .card textarea{background:#0F0F0E;color:#ECEAE4;border-color:#3A3935}
+html.demo-dark .login input:focus,html.demo-dark .card input:focus,html.demo-dark .card textarea:focus{border-color:#FFD400}
+html.demo-dark .hint,html.demo-dark .card label{color:#A8A49A}
+html.demo-dark .err{color:#FF8A80}
+html.demo-dark .photo-btn{background:#262624;color:#ECEAE4}
+html.demo-dark .busy{background:rgba(15,15,14,.75)}
+html.demo-dark .del{background:transparent;border-color:#3A3935;color:#FF8A80}
+html.demo-dark .del:hover{border-color:#FF8A80}
+html.demo-dark .add{border-color:#4A4945;color:#A8A49A}
+html.demo-dark .add:hover{border-color:#FFD400;color:#FFD400}
+
+/* ===== Согласие и политика ===== */
+html.demo-dark .doc{background:#1A1A19}
+html.demo-dark .doc a{color:#FFD400}
+html.demo-dark .ed,html.demo-dark body:has(.doc) > footer{color:#A8A49A}
+html.demo-dark .tbl td,html.demo-dark .tbl tr{border-color:#33322F}
+html.demo-dark .tbl td:first-child{background:#222221}
+html.demo-dark .fill{background:#4A3F00;color:#FFE680}
