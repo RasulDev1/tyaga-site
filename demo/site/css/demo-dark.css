@@ -5,16 +5,17 @@ html.demo-dark body{background:#0F0F0E;color:#ECEAE4}
 /* ===== Сайт ===== */
 html.demo-dark a{color:#ECEAE4}
 html.demo-dark a:hover{color:#FFD400}
-html.demo-dark .features,html.demo-dark .how,html.demo-dark .form-box{background:#1A1A19;border-color:#2A2A28}
-html.demo-dark .feat i{background:#2A2A28}
+html.demo-dark .head-tel{color:#FFD400}
+html.demo-dark footer a{color:#A8A49A}
+html.demo-dark .form-box{background:#1A1A19;border-color:#2A2A28}
 html.demo-dark .sub,html.demo-dark .card-spec,html.demo-dark .card-prices small,html.demo-dark .card-prices .d,
-html.demo-dark .grid-note,html.demo-dark .step span,html.demo-dark .chosen small,html.demo-dark .note{color:#A8A49A}
+html.demo-dark .grid-note,html.demo-dark .chosen small,html.demo-dark .note{color:#A8A49A}
 html.demo-dark .card{background:#1A1A19;border-color:#2E2D2A}
 html.demo-dark .card.sel{border-color:#FFD400}
 html.demo-dark .card-img{background:#262624}
 html.demo-dark .card button[data-id]{background:transparent;color:#ECEAE4;border-color:#ECEAE4}
 html.demo-dark .card.sel button[data-id]{background:#FFD400;color:#141414;border-color:#FFD400}
-html.demo-dark .step,html.demo-dark .chosen{background:#262624}
+html.demo-dark .chosen{background:#262624}
 html.demo-dark .chosen-img{background:#33322F}
 html.demo-dark .fields input,html.demo-dark .tool-pick select{background:#0F0F0E;color:#ECEAE4;border-color:#55534E}
 html.demo-dark .fields input:focus,html.demo-dark .tool-pick select:focus{border-color:#FFD400}

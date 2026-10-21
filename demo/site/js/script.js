@@ -178,16 +178,6 @@ var DELIVERY_PRICE = null;
   $('calcBackdrop').addEventListener('click', closeCalc);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCalc(); });
 
-  // Панель связи на телефоне показываем только пока идёт прокрутка
-  (function () {
-    var fc = document.querySelector('.float-chat'), t;
-    window.addEventListener('scroll', function () {
-      fc.classList.add('scrolling');
-      clearTimeout(t);
-      t = setTimeout(function () { fc.classList.remove('scrolling'); }, 600);
-    }, { passive: true });
-  })();
-
   $('bookBtn').addEventListener('click', function () {
     var c = cur(), k = calc();
     if (!checkAll() || !k.valid) { showWarn('Заполните все поля корректно — ошибки отмечены красным.'); return; }
@@ -256,23 +246,6 @@ var DELIVERY_PRICE = null;
     var a = e.target.closest('a[data-off], #msg a[href="#"]');
     if (a) e.preventDefault();
   });
-
-  // Мобильное меню
-  var menu = $('menu'), burger = $('burger');
-  function setMenu(open) { menu.classList.toggle('open', open); burger.classList.toggle('open', open); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-  burger.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
-  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-  document.addEventListener('click', function (e) { if (!e.target.closest('header')) setMenu(false); });
-
-  // Плавающие кнопки мессенджеров прячем, пока на экране форма бронирования и подвал — чтобы не закрывали кнопки
-  if ('IntersectionObserver' in window) {
-    var visible = {};
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { visible[en.target.id] = en.isIntersecting; });
-      document.querySelector('.float-chat').classList.toggle('away', !!(visible.booking || visible.contacts));
-    }, { threshold: 0.05 });
-    io.observe($('booking')); io.observe($('contacts'));
-  }
 
   function showCatalog(list) {
     TOOLS = list;

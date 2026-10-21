@@ -9,7 +9,7 @@
   // Тёмная тема — отдельная таблица стилей, включается классом на <html>
   var root = document.documentElement;
   root.classList.toggle('demo-dark', host.theme === 'dark');
-  document.write('<link rel="stylesheet" href="css/demo-dark.css?v=1">');
+  document.write('<link rel="stylesheet" href="css/demo-dark.css?v=2">');
 
   // Свои ключи хранилища, чтобы демо не трогало кэш каталога настоящего сайта
   var P = 'tyaga_demo:', S = Storage.prototype;
